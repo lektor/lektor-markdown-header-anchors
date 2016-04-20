@@ -1,5 +1,6 @@
 from lektor.pluginsystem import Plugin
 import uuid
+from lektor.utils import slugify
 from markupsafe import Markup
 from collections import namedtuple
 
@@ -14,7 +15,10 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
     def on_markdown_config(self, config, **extra):
         class HeaderAnchorMixin(object):
             def header(renderer, text, level, raw):
-                anchor = uuid.uuid4().hex[:6]
+                if self.get_config().get('anchor-type') == "random":
+                    anchor = uuid.uuid4().hex[:6]
+                else:
+                    anchor = slugify(raw)
                 renderer.meta['toc'].append((level, anchor, Markup(text)))
                 return '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
         config.renderer_mixins.append(HeaderAnchorMixin)
