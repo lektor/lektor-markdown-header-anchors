@@ -35,7 +35,10 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
                 prev_level = level
             elif prev_level > level:
                 while prev_level > level:
-                    stack.pop()
+                    # Just a simple workaround for when people do weird
+                    # shit with headlines.
+                    if len(stack) > 1:
+                        stack.pop()
                     prev_level -= 1
             stack[-1].append(TocEntry(anchor, title, []))
 

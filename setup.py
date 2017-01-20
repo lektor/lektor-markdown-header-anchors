@@ -6,7 +6,7 @@ setup(
     author='Armin Ronacher',
     author_email='armin.ronacher@active-4.com',
     url='http://github.com/lektor/lektor-markdown-header-anchors',
-    version='0.1',
+    version='0.2',
     license='BSD',
     py_modules=['lektor_markdown_header_anchors'],
     entry_points={
