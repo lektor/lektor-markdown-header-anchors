@@ -4,7 +4,7 @@ from markupsafe import Markup
 from collections import namedtuple, Counter
 
 
-TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
+TocEntry = namedtuple('TocEntry', ['level', 'anchor', 'title', 'children'])
 
 
 def uniquify(count, raw):
@@ -23,7 +23,7 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
         class HeaderAnchorMixin(object):
             def header(renderer, text, level, raw):
                 anchor = uniquify(renderer.meta['uniquify'], raw)
-                renderer.meta['toc'].append((level, anchor, Markup(text)))
+                renderer.meta['toc'].append(TocEntry(level, anchor, Markup(text), []))
                 return '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
         config.renderer_mixins.append(HeaderAnchorMixin)
 
@@ -32,23 +32,12 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
         meta['uniquify'] = Counter()
 
     def on_markdown_meta_postprocess(self, meta, **extra):
-        prev_level = None
-        toc = []
-        stack = [toc]
+        stack = [TocEntry(-1, None, None, [])]
 
-        for level, anchor, title in meta['toc']:
-            if prev_level is None:
-                prev_level = level
-            elif prev_level == level - 1:
-                stack.append(stack[-1][-1][2])
-                prev_level = level
-            elif prev_level > level:
-                while prev_level > level:
-                    # Just a simple workaround for when people do weird
-                    # shit with headlines.
-                    if len(stack) > 1:
-                        stack.pop()
-                    prev_level -= 1
-            stack[-1].append(TocEntry(anchor, title, []))
-
-        meta['toc'] = toc
+        for entry in meta['toc']:
+            while stack[-1].level >= entry.level:
+                stack.pop()
+            stack[-1].children.append(entry)
+            stack.append(entry)
+    
+        meta['toc'] = stack[0].children
