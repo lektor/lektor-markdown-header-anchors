@@ -27,7 +27,7 @@ Example rendering:
 <ul class="toc">
 {% for item in this.body.toc recursive %}
   <li><a href="#{{ item.anchor }}">{{ item.title }}</a>{%
-   if item.children %}<ul>{{ loop(item.children) }}</ul>{% endif %}
+   if item.children %}<ul>{{ loop(item.children) }}</ul>{% endif %}</li>
 {% endfor %}
 </ul>
 ```
