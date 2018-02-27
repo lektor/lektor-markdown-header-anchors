@@ -1,0 +1,20 @@
+matrix:
+  fast_finish: true
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+    - PYTHON: "C:\\Python36"
+
+install:
+  - "%PYTHON%\\python.exe -m pip install --upgrade pytest"
+  - "%PYTHON%\\python.exe -m pip install --upgrade codecov"
+  - "%PYTHON%\\python.exe -m pip install --editable .[test]"
+
+test_script:
+  - "%PYTHON%\\python.exe --version"
+  - "%PYTHON%\\python.exe -m pip list"
+  - "%PYTHON%\\Scripts\\pytest.exe . --tb=short -v --cov=lektor_markdown_header_anchors"
+
+# Not a .NET project
+build: false

@@ -1,0 +1,22 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.6"
+
+env:
+  - LEKTOR=pypi
+  - LEKTOR=master
+
+before_install:
+  - if [[ $LEKTOR == master ]]; then travis_retry pip install git+https://github.com/lektor/lektor.git#egg=Lektor; fi
+
+install:
+  - travis_retry pip install --upgrade pytest
+  - travis_retry pip install --upgrade codecov
+  - travis_retry pip install --editable .[test]
+
+script: pytest --cov=lektor_markdown_header_anchors
+
+after_success:
+  - codecov
