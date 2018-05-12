@@ -7,7 +7,7 @@ are given anchors and a table of contents is collected.
 
 To enable the plugin run this command:
 
-```
+```shell
 $ lektor plugins add markdown-header-anchors
 ```
 

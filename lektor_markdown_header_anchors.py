@@ -10,7 +10,7 @@ TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
 
 class MarkdownHeaderAnchorsPlugin(Plugin):
     name = 'Markdown Header Anchors'
-    description = 'Adds anchors to markdown headers.'
+    description = u'Lektor plugin that adds anchors and table of contents to markdown headers.'
 
     def on_markdown_config(self, config, **extra):
         class HeaderAnchorMixin(object):
