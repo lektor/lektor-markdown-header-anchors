@@ -24,7 +24,7 @@ setup(
     name='lektor-markdown-header-anchors',
     py_modules=['lektor_markdown_header_anchors'],
     url='http://github.com/lektor/lektor-markdown-header-anchors',
-    version='0.3',
+    version='0.3.1',
     classifiers=[
         'Environment :: Plugins',
         'Environment :: Web Environment',
