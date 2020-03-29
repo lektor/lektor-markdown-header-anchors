@@ -20,7 +20,7 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
                 else:
                     anchor = slugify(raw)
                 renderer.meta['toc'].append((level, anchor, Markup(text)))
-                return '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
+                return '<h%d id="%s">%s <a href="#%s" class="anchorlink">&#182;</a></h%d>' % (level, anchor, text, anchor, level)
         config.renderer_mixins.append(HeaderAnchorMixin)
 
     def on_markdown_meta_init(self, meta, **extra):
