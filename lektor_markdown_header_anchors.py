@@ -20,7 +20,19 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
                 else:
                     anchor = slugify(raw)
                 renderer.meta['toc'].append((level, anchor, Markup(text)))
-                return '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
+                if self.get_config().get_bool('anchor-link.enable'):
+                    label = self.get_config().get('anchor-link.label', '&#182;')
+                    classname = self.get_config().get('anchor-link.class', 'anchor-link')
+                    spacer = self.get_config().get('anchor-link.spacer', '')
+                    if self.get_config().get_bool('anchor-link.place-left'):
+                        anchorlink = '<span class="%s"><a href="#%s">%s</a>%s</span>' % (classname, anchor, label, spacer)
+                        formatstring = '<h%d id="%s">%s%s</h%d>' % (level, anchor, anchorlink, text, level)
+                    else:
+                        anchorlink = '<span class="%s">%s<a href="#%s">%s</a></span>' % (classname, spacer, anchor, label)
+                        formatstring = '<h%d id="%s">%s%s</h%d>' % (level, anchor, text, anchorlink, level)
+                else:
+                    formatstring = '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
+                return formatstring
         config.renderer_mixins.append(HeaderAnchorMixin)
 
     def on_markdown_meta_init(self, meta, **extra):
