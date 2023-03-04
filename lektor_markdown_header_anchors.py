@@ -1,9 +1,9 @@
-from lektor.pluginsystem import Plugin
 import uuid
-from lektor.utils import slugify
-from markupsafe import Markup
 from collections import namedtuple
 
+from lektor.pluginsystem import Plugin
+from lektor.utils import slugify
+from markupsafe import Markup
 
 TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
 
