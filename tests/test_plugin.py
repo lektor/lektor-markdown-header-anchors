@@ -74,7 +74,7 @@ def test_toc(make_markdown):
     assert toc == [
         ('heading-one', Markup('Heading One'), []),
         ('heading-two', Markup('Heading Two'), [
-            ('heading-2.1', Markup('Heading 2.1'), []),
+            ('heading-2-1', Markup('Heading 2.1'), []),
         ]),
         ('heading-three', Markup('Heading Three'), []),
     ]

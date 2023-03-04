@@ -2,8 +2,8 @@ import uuid
 from collections import namedtuple
 
 from lektor.pluginsystem import Plugin
-from lektor.utils import slugify
 from markupsafe import Markup
+from slugify import slugify
 
 TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
 
@@ -18,7 +18,7 @@ class MarkdownHeaderAnchorsPlugin(Plugin):
                 if self.get_config().get('anchor-type') == "random":
                     anchor = uuid.uuid4().hex[:6]
                 else:
-                    anchor = slugify(raw)
+                    anchor = slugify(text)
                 renderer.meta['toc'].append((level, anchor, Markup(text)))
                 return '<h%d id="%s">%s</h%d>' % (level, anchor, text, level)
         config.renderer_mixins.append(HeaderAnchorMixin)
