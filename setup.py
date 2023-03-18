@@ -32,6 +32,9 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
     ],
+    install_requires=[
+        'slugify',
+    ],
     entry_points={
         'lektor.plugins': [
             'markdown-header-anchors = lektor_markdown_header_anchors:MarkdownHeaderAnchorsPlugin',
