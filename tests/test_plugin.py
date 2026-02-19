@@ -83,3 +83,15 @@ def test_toc(make_markdown):
 def test_plugin_description(env):
     plugin = MarkdownHeaderAnchorsPlugin(env, "dummy-id")
     assert plugin.description.startswith("Lektor plugin that adds anchors")
+
+
+@pytest.mark.parametrize("heading, expected_anchor", [
+    ("`keyword`", "keyword"),
+    ("b&amp;", "b"),
+    ("b&_amp;_", "b-amp"),
+    ("&_amp;_", "amp"),
+])
+def test_anchor(make_markdown, heading, expected_anchor):
+    markdown = make_markdown(f"# {heading}\n")
+    (entry,) = markdown.meta['toc']
+    assert entry.anchor == expected_anchor
