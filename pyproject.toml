@@ -36,3 +36,9 @@ markdown-header-anchors = "lektor_markdown_header_anchors:MarkdownHeaderAnchorsP
 # So, here, we use hatchling which does not leave an .egg-info lying around
 requires = ["hatchling >= 1.28.0"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "lektor",
+    "pytest",
+]
