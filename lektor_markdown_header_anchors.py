@@ -5,9 +5,9 @@ from importlib import metadata
 
 import mistune
 from lektor.pluginsystem import Plugin
+from lektor.utils import slugify
 from markupsafe import escape
 from markupsafe import Markup
-from slugify import slugify
 
 TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
 
