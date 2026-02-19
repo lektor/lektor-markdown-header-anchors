@@ -1,7 +1,9 @@
-dist
-build
-*.egg-info
-*.pyc
-*.pyo
+/dist/
+/build/
+__pycache__/
 *~
 *#
+/.coverage*
+/htmlcov/
+/.tox/
+/.venv/

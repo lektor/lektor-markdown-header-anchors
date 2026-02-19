@@ -16,13 +16,23 @@ classifiers = [
   "Framework :: Lektor",
   "Intended Audience :: Developers",
 ]
+requires-python = ">= 3.10"
 
 [project.entry-points."lektor.plugins"]
 markdown-header-anchors = "lektor_markdown_header_anchors:MarkdownHeaderAnchorsPlugin"
 
 [build-system]
-requires = ["setuptools >= 77.0.3"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-py-modules = ["lektor_markdown_header_anchors"]
+# When installed in editable mode, setuptools installs a .pkg-info in site-packages,
+# but also leaves an .egg-info in the project directory.
+# This results in importlib.metadata.distributions() listing the distribution twice,
+# which can cause Lektor to fail with:
+#
+#   RuntimeError: Plugin "markdown-header-anchors" is already registered
+#
+# Refs:
+# https://github.com/python/importlib_metadata/issues/481
+# https://github.com/pypa/setuptools/issues/3649
+#
+# So, here, we use hatchling which does not leave an .egg-info lying around
+requires = ["hatchling >= 1.28.0"]
+build-backend = "hatchling.build"
