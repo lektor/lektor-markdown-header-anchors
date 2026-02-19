@@ -1,5 +1,6 @@
 import uuid
 from collections import namedtuple
+from importlib import metadata
 
 import mistune
 from lektor.pluginsystem import Plugin
@@ -11,7 +12,11 @@ TocEntry = namedtuple('TocEntry', ['anchor', 'title', 'children'])
 
 class MarkdownHeaderAnchorsPlugin(Plugin):
     name = 'Markdown Header Anchors'
-    description = u'Lektor plugin that adds anchors and table of contents to markdown headers.'
+
+    @property
+    def description(self) -> str:
+        dist = metadata.distribution(self.__module__)
+        return dist.metadata.get("summary")
 
     def on_markdown_config(self, config, **extra):
         config.renderer_mixins.append(

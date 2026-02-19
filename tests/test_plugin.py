@@ -78,3 +78,8 @@ def test_toc(make_markdown):
         ]),
         ('heading-three', Markup('Heading Three'), []),
     ]
+
+
+def test_plugin_description(env):
+    plugin = MarkdownHeaderAnchorsPlugin(env, "dummy-id")
+    assert plugin.description.startswith("Lektor plugin that adds anchors")

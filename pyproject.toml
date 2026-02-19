@@ -1,0 +1,28 @@
+[project]
+name = "lektor-markdown-header-anchors"
+version = "0.3.1"
+description = "Lektor plugin that adds anchors and table of contents to markdown headers."
+authors = [{name = "Armin Ronacher", email = "armin.ronacher@active-4.com"}]
+keywords = [
+  "Lektor plugin", "markdown", "static-site",
+  "blog", "toc", "table-of-contents", "anchors", "headers",
+]
+license = "BSD-3-Clause"
+readme = "README.md"
+urls.homepage = "http://github.com/lektor/lektor-markdown-header-anchors"
+classifiers = [
+  "Environment :: Plugins",
+  "Environment :: Web Environment",
+  "Framework :: Lektor",
+  "Intended Audience :: Developers",
+]
+
+[project.entry-points."lektor.plugins"]
+markdown-header-anchors = "lektor_markdown_header_anchors:MarkdownHeaderAnchorsPlugin"
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["lektor_markdown_header_anchors"]
