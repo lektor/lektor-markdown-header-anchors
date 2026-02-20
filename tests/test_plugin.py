@@ -50,7 +50,7 @@ def make_markdown(pad):
         )
         return pad.root["body"]
 
-    return make_markdown
+    yield make_markdown
 
 
 def test_html(make_markdown):
