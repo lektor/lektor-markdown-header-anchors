@@ -11,6 +11,10 @@ on:
     branches:
       - master
 
+env:
+  uv-version: "0.10.4"
+  FORCE_COLOR: "1"
+
 jobs:
   ############################################################################
   # Python tests
@@ -18,15 +22,34 @@ jobs:
   python-tests:
     name: Python Tests
     runs-on: ubuntu-latest
-    env:
-      FORCE_COLOR: "1"
     steps:
       - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.10.4"
+          version: ${{ env.uv-version }}
+
       - name: Run Tests
         run: uv run noxfile.py
+
+  publish:
+    name: Build & Publish
+    needs: [python-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: ${{ env.uv-version }}
+
       - name: Build Distribution
         run: uv build
+
+      - name: Publish to PyPI
+        # Only run on push of tags matching "v*"
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        run: uv publish
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_PASSWORD }}
+
