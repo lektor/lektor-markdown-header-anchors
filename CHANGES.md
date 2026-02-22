@@ -1,7 +1,16 @@
 # Changelog
 
-These are all the changes in Lektor Markdown Header Anchors
+These are all the changes in _Lektor Markdown Header Anchors_
 since the first public release.
+
+## 0.4.0 (unreleased)
+
+- Fixes to support Lektor 3.4 ([#15], [#17])
+- Added tests, and run them in CI under Python 3.10 – 3.14 ([#18])
+
+[#15]: https://github.com/lektor/lektor-markdown-header-anchors/pull/15
+[#17]: https://github.com/lektor/lektor-markdown-header-anchors/pull/17
+[#18]: https://github.com/lektor/lektor-markdown-header-anchors/pull/18
 
 ## 0.3.1 (2019-01-25)
 
