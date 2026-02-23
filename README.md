@@ -1,5 +1,12 @@
 # lektor-markdown-header-anchors
 
+[![CI Badge][CI Badge]][CI] [![PyPI Version Badge][PyPI Version Badge]][PyPI]
+
+[CI Badge]: https://github.com/lektor/lektor-markdown-header-anchors/actions/workflows/ci.yml/badge.svg
+[CI]: https://github.com/lektor/lektor-markdown-header-anchors/actions/workflows/ci.yml
+[PyPI Version Badge]: https://img.shields.io/pypi/v/lektor-markdown-header-anchors
+[PyPI]: https://pypi.org/project/lektor-markdown-header-anchors/
+
 This plugin extends the markdown support in Lektor in a way that headlines
 are given anchors and a table of contents is collected.
 
