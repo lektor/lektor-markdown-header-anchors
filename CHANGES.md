@@ -3,7 +3,7 @@
 These are all the changes in _Lektor Markdown Header Anchors_
 since the first public release.
 
-## 0.4.0 (unreleased)
+## 0.4.0 (2026-02-23)
 
 - Fixes to support Lektor 3.4 ([#15], [#17])
 - Added tests, and run them in CI under Python 3.10 – 3.14 ([#18])

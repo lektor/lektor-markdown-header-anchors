@@ -1,6 +1,6 @@
 [project]
 name = "lektor-markdown-header-anchors"
-version = "0.4.0.dev1"
+version = "0.4.0"
 description = "Lektor plugin that adds anchors and table of contents to markdown headers."
 authors = [{name = "Armin Ronacher", email = "armin.ronacher@active-4.com"}]
 keywords = [
