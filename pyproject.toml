@@ -39,6 +39,6 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "lektor",
+    "lektor>=3.3.13b1",
     "pytest",
 ]
