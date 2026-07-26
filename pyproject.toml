@@ -42,3 +42,6 @@ dev = [
     "lektor>=3.3.13b1",
     "pytest",
 ]
+
+[tool.uv]
+exclude-newer = "7 days"
