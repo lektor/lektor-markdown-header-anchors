@@ -39,9 +39,12 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "lektor>=3.3.13b1",
+    "lektor>=3.3.13",
     "pytest",
 ]
 
 [tool.uv]
 exclude-newer = "7 days"
+
+[tool.uv.prerelease-package]
+lektor = "allow"  # temporary: use lektor 3.4.* (still in beta) by default
